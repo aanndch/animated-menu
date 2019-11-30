@@ -5,6 +5,7 @@
 
 .menu-btn {
   position: relative;
+  width: 80px;
   z-index: 10;
   background: none;
   outline: none;
@@ -34,7 +35,7 @@
   width: 100%;
 }
 
-.secondary-background {
+.black-background {
   top: 0;
   left: 0;
   right: 0;
@@ -46,7 +47,7 @@
   background-color: black;
 }
 
-.background {
+.red-background {
   position: relative;
   background-color: red;
   height: 100%;

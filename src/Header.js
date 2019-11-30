@@ -2,55 +2,33 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const Header = () => {
-  const [state, setState] = useState({
-    initial: false,
-    clicked: null,
-    menuName: "Menu"
-  });
-
+  const [clicked, setClick] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
   let menu = useRef(null);
-  let reveal1 = useRef(null);
-  let reveal2 = useRef(null);
+  let blackBackground = useRef(null);
+  let redBackground = useRef(null);
 
   const handleMenu = () => {
     disableMenu();
-
-    if (state.initial === false) {
-      setState({
-        initial: null,
-        clicked: true,
-        menuName: "Close"
-      });
-    } else if (state.clicked === true) {
-      setState({
-        clicked: !state.clicked,
-        menuName: "Menu"
-      });
-    } else if (state.clicked === false) {
-      setState({
-        clicked: !state.clicked,
-        menuName: "Close"
-      });
-    }
+    setClick(!clicked);
   };
 
   const disableMenu = () => {
     setDisabled(true);
     setTimeout(() => {
       setDisabled(false);
-    }, 1200);
+    }, 800);
   };
 
   useEffect(() => {
-    if (state.clicked === false) {
-      gsap.to([reveal2, reveal1], {
+    if (clicked === false) {
+      gsap.to([redBackground, blackBackground], {
         duration: 0.8,
         height: 0,
         ease: "power3.inOut",
         stagger: {
-          amount: 0.07
+          amount: 0.15
         }
       });
 
@@ -60,10 +38,7 @@ const Header = () => {
           display: "none"
         }
       });
-    } else if (
-      state.clicked === true ||
-      (state.clicked === true && state.initial === null)
-    ) {
+    } else if (clicked === true) {
       gsap.to(menu, {
         duration: 0,
         css: {
@@ -71,13 +46,13 @@ const Header = () => {
         }
       });
 
-      gsap.to([reveal1, reveal2], {
+      gsap.to([blackBackground, redBackground], {
         duration: 0,
         opacity: 1,
         height: "100%"
       });
 
-      gsap.from([reveal1, reveal2], {
+      gsap.from([blackBackground, redBackground], {
         duration: 0.8,
         height: 0,
         transformOrigin: "right top",
@@ -88,16 +63,19 @@ const Header = () => {
         }
       });
     }
-  }, [state]);
+  }, [clicked]);
 
   return (
     <header>
       <button disabled={disabled} className="menu-btn" onClick={handleMenu}>
-        {state.menuName}
+        {clicked ? "Close" : "Menu"}
       </button>
       <div ref={el => (menu = el)} className="menu">
-        <div ref={el => (reveal1 = el)} className="secondary-background"></div>
-        <div ref={el => (reveal2 = el)} className="background"></div>
+        <div
+          ref={el => (blackBackground = el)}
+          className="black-background"
+        ></div>
+        <div ref={el => (redBackground = el)} className="red-background"></div>
       </div>
     </header>
   );
