@@ -1,0 +1,55 @@
+.container {
+  width: 1200px;
+  margin: auto;
+}
+
+.menu-btn {
+  position: relative;
+  z-index: 10;
+  background: none;
+  outline: none;
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  float: right;
+  border-radius: 4px;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+}
+
+.menu-btn:hover {
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.secondary-background {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+.background {
+  position: relative;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}

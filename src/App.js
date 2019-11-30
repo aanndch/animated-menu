@@ -5,7 +5,7 @@ import Header from "./Header.js";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
     </div>
   );
