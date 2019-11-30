@@ -7,13 +7,14 @@ const Header = () => {
     clicked: null,
     menuName: "Menu"
   });
+
   const [disabled, setDisabled] = useState(false);
 
   let menu = useRef(null);
   let secondBackground = useRef(null);
   let background = useRef(null);
 
-  const openMenu = () => {
+  const handleMenu = () => {
     disableMenu();
 
     if (state.initial === false) {
@@ -92,7 +93,7 @@ const Header = () => {
 
   return (
     <header>
-      <button disabled={disabled} className="menu-btn" onClick={openMenu}>
+      <button disabled={disabled} className="menu-btn" onClick={handleMenu}>
         {state.menuName}
       </button>
       <div ref={el => (menu = el)} className="menu">
