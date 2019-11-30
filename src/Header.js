@@ -11,8 +11,8 @@ const Header = () => {
   const [disabled, setDisabled] = useState(false);
 
   let menu = useRef(null);
-  let secondBackground = useRef(null);
-  let background = useRef(null);
+  let reveal1 = useRef(null);
+  let reveal2 = useRef(null);
 
   const handleMenu = () => {
     disableMenu();
@@ -45,7 +45,7 @@ const Header = () => {
 
   useEffect(() => {
     if (state.clicked === false) {
-      gsap.to([background, secondBackground], {
+      gsap.to([reveal2, reveal1], {
         duration: 0.8,
         height: 0,
         ease: "power3.inOut",
@@ -71,21 +71,20 @@ const Header = () => {
         }
       });
 
-      gsap.to([secondBackground, background], {
-        duration: 0.8,
+      gsap.to([reveal1, reveal2], {
+        duration: 0,
         opacity: 1,
         height: "100%"
       });
 
-      gsap.from([secondBackground, background], {
+      gsap.from([reveal1, reveal2], {
         duration: 0.8,
         height: 0,
-        opacity: 1,
         transformOrigin: "right top",
-        skewY: 1,
+        skewY: 2,
         ease: "power3.inOut",
         stagger: {
-          amount: 0.15
+          amount: 0.1
         }
       });
     }
@@ -97,12 +96,8 @@ const Header = () => {
         {state.menuName}
       </button>
       <div ref={el => (menu = el)} className="menu">
-        <div
-          ref={el => (secondBackground = el)}
-          className="secondary-background"
-        >
-          <div ref={el => (background = el)} className="background"></div>
-        </div>
+        <div ref={el => (reveal1 = el)} className="secondary-background"></div>
+        <div ref={el => (reveal2 = el)} className="background"></div>
       </div>
     </header>
   );
