@@ -22,23 +22,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (clicked === false) {
-      gsap.to([redBackground, blackBackground], {
-        duration: 0.8,
-        height: 0,
-        ease: "power3.inOut",
-        stagger: {
-          amount: 0.15
-        }
-      });
-
-      gsap.to(menu, {
-        duration: 1,
-        css: {
-          display: "none"
-        }
-      });
-    } else if (clicked === true) {
+    if (clicked) {
       gsap.to(menu, {
         duration: 0,
         css: {
@@ -60,6 +44,22 @@ const Header = () => {
         ease: "power3.inOut",
         stagger: {
           amount: 0.1
+        }
+      });
+    } else {
+      gsap.to([redBackground, blackBackground], {
+        duration: 0.8,
+        height: 0,
+        ease: "power3.inOut",
+        stagger: {
+          amount: 0.15
+        }
+      });
+
+      gsap.to(menu, {
+        duration: 1,
+        css: {
+          display: "none"
         }
       });
     }
